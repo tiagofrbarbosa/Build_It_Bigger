@@ -1,7 +1,22 @@
 package infofun.tech.jokes;
 
-public class Joker {
+import java.io.Serializable;
+
+public class Joker implements Serializable{
+
+    String joke;
+
+    public Joker(String joke){
+        this.joke = joke;
+    }
+
+    public void setJoke(String joke){
+        this.joke = joke;
+    }
+
    public String getJoke() {
-        return "This is totally a funny joke";
+
+       return this.joke;
+       //return "This is totally a funny joke";
         }
 }

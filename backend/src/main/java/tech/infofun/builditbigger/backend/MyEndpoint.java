@@ -13,6 +13,7 @@ import com.google.api.server.spi.config.ApiNamespace;
 import javax.inject.Named;
 
 import infofun.tech.jokes.Joker;
+import infofun.tech.jokes.chuckJokes;
 
 /** An endpoint class we are exposing */
 @Api(
@@ -37,8 +38,8 @@ public class MyEndpoint {
     }
 
     @ApiMethod(name = "getJoke")
-    public Joker getJoke() {
-        Joker response = new Joker();
+    public chuckJokes getJoke() {
+        chuckJokes response = new chuckJokes();
         response.getJoke();
         return response;
     }
