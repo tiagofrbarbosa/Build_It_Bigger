@@ -16,7 +16,7 @@ import java.net.URLConnection;
 
 public class chuckJokes {
 
-    public static final String BASE_URL = "https://api.chucknorris.io/jokes";
+    public static final String BASE_URL = "http://api.icndb.com/jokes";
 
     public String getJoke() {
             String joke = "teste";
@@ -34,8 +34,8 @@ public class chuckJokes {
             in.close();
 
             JSONObject jsonObject = new JSONObject(new JSONTokener(response.toString()));
-
-            joke = jsonObject.optString("value");
+            JSONObject jokeObject = jsonObject.getJSONObject("value");
+            joke = jokeObject.getString("joke");
 
         }catch (Exception e){
             joke = e.getMessage();
