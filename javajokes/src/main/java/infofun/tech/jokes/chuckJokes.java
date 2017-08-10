@@ -2,8 +2,10 @@ package infofun.tech.jokes;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.json.JSONTokener;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
@@ -14,33 +16,31 @@ import java.net.URLConnection;
 
 public class chuckJokes {
 
-    String url = "https://api.chucknorris.io/jokes/random";
+    public static final String BASE_URL = "https://api.chucknorris.io/jokes";
 
     public String getJoke() {
-        Joker norris = null;
+            String joke = "teste";
 
         try {
-            URL api = new URL(url);
-            URLConnection connection = api.openConnection();
-            BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-
+            StringBuilder url = new StringBuilder(BASE_URL + "/random");
+            URL api = new URL(url.toString());
+            URLConnection conn = api.openConnection();
+            BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
             StringBuilder response = new StringBuilder();
-            String inputLine;
+            String line;
 
-            while ((inputLine = in.readLine()) != null) {
-                response.append(inputLine);
-            }
+            while ((line = in.readLine()) != null) response.append(line);
 
             in.close();
 
-            JSONArray jArray = new JSONArray(response.toString());
-            JSONObject jObject = jArray.getJSONObject(0);
-            norris = new Joker(jObject.getString("value"));
+            JSONObject jsonObject = new JSONObject(new JSONTokener(response.toString()));
 
-        } catch (Exception e) {
-            e.printStackTrace();
+            joke = jsonObject.optString("value");
+
+        }catch (Exception e){
+            joke = e.getMessage();
         }
 
-        return norris.getJoke();
+        return joke;
     }
 }

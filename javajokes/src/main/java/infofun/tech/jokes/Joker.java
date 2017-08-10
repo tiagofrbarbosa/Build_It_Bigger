@@ -1,8 +1,7 @@
 package infofun.tech.jokes;
 
-import java.io.Serializable;
 
-public class Joker implements Serializable{
+public class Joker{
 
     String joke;
 
@@ -15,7 +14,6 @@ public class Joker implements Serializable{
     }
 
    public String getJoke() {
-
        return this.joke;
        //return "This is totally a funny joke";
         }
