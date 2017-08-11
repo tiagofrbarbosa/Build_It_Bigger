@@ -38,7 +38,7 @@ public class chuckJokes {
             joke = jokeObject.getString("joke");
 
         }catch (Exception e){
-            joke = e.getMessage();
+            joke = null;
         }
 
         return joke;

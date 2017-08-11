@@ -14,7 +14,9 @@ import java.util.Random;
 public class AndroidLibActivity extends AppCompatActivity {
 
     public final static String EXTRA_JOKE = "EXTRA_JOKE";
+    public final static String TEST_TEXT = "TEST_TEXT";
     private TextView myText;
+    private TextView myResult;
     private ImageView avatar;
     private int id_avatar;
 
@@ -25,6 +27,7 @@ public class AndroidLibActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String joke = intent.getStringExtra(EXTRA_JOKE);
+        String result = intent.getStringExtra(TEST_TEXT);
 
         avatar = (ImageView) findViewById(R.id.iv_avatar);
 
@@ -35,6 +38,15 @@ public class AndroidLibActivity extends AppCompatActivity {
                 .into(avatar);
 
         myText = (TextView) findViewById(R.id.myText);
+        myResult = (TextView) findViewById(R.id.myResult);
+
+
+
+        if(joke == null){
+            joke = getResources().getString(R.string.joke_fail);
+        }
+
         myText.setText(joke);
+        myResult.setText(result);
     }
 }

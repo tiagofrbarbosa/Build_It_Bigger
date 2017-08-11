@@ -22,6 +22,7 @@ import tech.infofun.builditbigger.backend.myApi.model.ChuckJokes;
 public class EndpointsAsyncTask extends AsyncTask<Context, Void, String> {
 
     public final static String EXTRA_JOKE = "EXTRA_JOKE";
+    public final static String TEST_TEXT = "TEST_TEXT";
     private static MyApi myApiService = null;
     private Context context;
 
@@ -51,14 +52,24 @@ public class EndpointsAsyncTask extends AsyncTask<Context, Void, String> {
             //return myApiService.sayHi(name).execute().getData();
             return myApiService.getJoke().execute().getData();
         } catch (IOException e) {
-            return e.getMessage();
+            return null;
         }
     }
 
     @Override
     protected void onPostExecute(String result) {
+
+        String test_result = null;
+
+        if(result != null){
+            test_result = "success";
+        }else{
+            test_result = "fail";
+        }
+
         Intent intent = new Intent(context, AndroidLibActivity.class);
         intent.putExtra(EXTRA_JOKE, result);
+        intent.putExtra(TEST_TEXT, test_result);
         context.startActivity(intent);
     }
 }
