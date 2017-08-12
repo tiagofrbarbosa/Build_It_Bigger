@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -18,6 +19,7 @@ import com.google.android.gms.ads.AdView;
 public class MainActivityFragment extends Fragment {
 
     private Button myButton;
+    public static ProgressBar spinner;
 
     public MainActivityFragment() {
     }
@@ -27,11 +29,15 @@ public class MainActivityFragment extends Fragment {
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_main, container, false);
 
+        spinner = (ProgressBar) root.findViewById(R.id.myProgressBar);
+        spinner.setVisibility(View.GONE);
+
         myButton = (Button) root.findViewById(R.id.myButton);
 
         myButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                spinner.setVisibility(View.VISIBLE);
                 new EndpointsAsyncTask().execute(getActivity());
             }
         });
