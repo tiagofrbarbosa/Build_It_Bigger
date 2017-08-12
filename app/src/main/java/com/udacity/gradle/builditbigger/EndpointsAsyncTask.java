@@ -14,7 +14,6 @@ import java.io.IOException;
 
 import tech.infofun.androidlib.AndroidLibActivity;
 import tech.infofun.builditbigger.backend.myApi.MyApi;
-import tech.infofun.builditbigger.backend.myApi.model.ChuckJokes;
 
 /**
  * Created by tfbarbosa on 07/08/2017.
